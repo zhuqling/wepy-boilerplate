@@ -17,7 +17,7 @@
 <script>
 import wepy from 'wepy'
 import { connect, getStore } from 'wepy-redux'
-import { ADD_ITEM } from '../store/types'
+import { addItem } from '../store/actions'
 
 const store = getStore()
 
@@ -27,9 +27,9 @@ const store = getStore()
       return state.list
     },
   },
-  {
-    addItem: ADD_ITEM,
-  },
+  // {
+  //   addItem: ADD_ITEM,
+  // },
 )
 export default class Index extends wepy.page {
   config = {
@@ -48,12 +48,7 @@ export default class Index extends wepy.page {
 
   methods = {
     add() {
-      store.dispatch({
-        type: ADD_ITEM,
-        payload: {
-          text: this.text,
-        },
-      })
+      store.dispatch(addItem(this.text))
 
       this.text = ''
       this.$apply()
