@@ -1,0 +1,14 @@
+{
+  "files.associations": {
+    "*.wxss": "css",
+    "*.wxs": "javascript",
+    "*.wpy": "vue"
+  },
+  "emmet.includeLanguages": {
+    "wxml": "html"
+  },
+  "minapp-vscode.disableAutoConfig": true,
+  "editor.formatOnSave": true,
+  "javascript.format.enable": false,
+  "jshint.enable": false
+}

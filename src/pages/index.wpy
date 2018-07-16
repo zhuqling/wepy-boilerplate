@@ -1,0 +1,71 @@
+<style lang="less">
+</style>
+
+<template>
+  <view>Hello world</view>
+  <repeat for="{{list}}" index="index" item="item" key="index">
+    <view>{{item}}</view>
+  </repeat>
+  <view>
+    <input type="text" value="{{text}}" @input="changeText"/>
+  </view>
+  <view>
+    <button @tap="add">Add</button>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import { connect, getStore } from 'wepy-redux'
+import { ADD_ITEM } from '../store/types'
+
+const store = getStore()
+
+@connect(
+  {
+    list(state) {
+      return state.list
+    },
+  },
+  {
+    addItem: ADD_ITEM,
+  },
+)
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Title1',
+  }
+
+  components = {}
+
+  mixins = []
+
+  data = {
+    text: 'text',
+  }
+
+  computed = {}
+
+  methods = {
+    add() {
+      store.dispatch({
+        type: ADD_ITEM,
+        payload: {
+          text: this.text,
+        },
+      })
+
+      this.text = ''
+      this.$apply()
+    },
+    changeText({ detail: { value } }) {
+      this.text = value
+      this.$apply()
+    },
+  }
+
+  events = {}
+
+  onLoad() {}
+}
+</script>
